@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { Button, InputText } from "primevue";
 import FriendsList from "@/features/friends/ui/FriendsList.vue";
-import FriendAddModal from "@/features/requests/ui/FriendAddModal.vue";
+import FriendAddModal from "@/features/friends/ui/FriendAddModal.vue";
 
 const showAddModal = ref(false);
 </script>

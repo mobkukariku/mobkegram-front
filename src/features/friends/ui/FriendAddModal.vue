@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {Dialog, InputText, Button, Message, useToast} from "primevue";
 import { ref } from "vue";
-import { useRequestsStore } from "@/features/requests/model/store";
+import { useSendRequestsStore } from "@/features/sendRequests/modal/store";
 
 const addForm = ref<{ targetUsername: string }>({ targetUsername: "" });
-const requestsStore = useRequestsStore();
+const requestsStore = useSendRequestsStore();
 const toast = useToast()
 const showAddModal = ref(false);
 const errors = ref<string[]>([]);

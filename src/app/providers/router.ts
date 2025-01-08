@@ -35,6 +35,17 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/friends/index.vue'),
         meta: { layout: 'SideBarLayout' },
     },
+    {
+        path: '/sendRequests',
+        name: 'SendRequests',
+        component: () => import('@/pages/sendRequests/index.vue'),
+    },
+    {
+        path: '/receivedRequests',
+        name: 'ReceivedRequests',
+        component: () => import('@/pages/receivedRequests/index.vue'),
+    },
+
 ]
 
 const router = createRouter({

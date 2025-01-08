@@ -6,6 +6,7 @@
   const auth = useAuthStore();
 
   const form = ref({
+    name: "",
     username: "",
     email: "",
     password: "",
@@ -20,6 +21,10 @@
 
     if (!form.value.email) {
       errors.value.push("Email is required.");
+    }
+
+    if(!form.value.name) {
+      errors.value.push("Name is required.");
     }
 
     if (!form.value.password) {
@@ -53,6 +58,13 @@
     <InputText
         v-model="form.username"
         placeholder="Username"
+        id="username"
+        type="text"
+        fluid
+    />
+    <InputText
+        v-model="form.name"
+        placeholder="Full Name"
         id="username"
         type="text"
         fluid

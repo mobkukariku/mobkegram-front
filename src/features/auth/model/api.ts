@@ -26,3 +26,15 @@ export const register = async (username:string, email: string, password: string)
         )
     }
 }
+
+export const logOut = async () => {
+    try{
+        const response = await axiosInstance.post("auth/logout");
+        return response.data;
+    }catch (err){
+        if (err.response && err.response.data && err.response.data.message) {
+            throw new Error(err.response.data.message);
+        }
+        throw new Error("Failed to logout. Please try again.");
+    }
+}

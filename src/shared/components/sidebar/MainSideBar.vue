@@ -6,18 +6,19 @@ import ProfileModal from "@/features/profile/ui/ProfileModal.vue";
 import SettingsModal from "@/features/settings/ui/SettingsModal.vue";
 import SideBarButton from "@/shared/components/sidebar/SideBarButton.vue";
 import {useRouter} from "vue-router";
+import {useAuthStore} from "@/features/auth/model/store";
 
 
 const profileStore = useProfileStore();
+const authStore = useAuthStore();
 const router = useRouter();
-
 const profile = computed(() => profileStore.profile);
 const loading = computed(() => profileStore.loading);
 const error = computed(() => profileStore.errors);
 
 onMounted(() => {
   profileStore.fetchProfile();
-
+  authStore.socketConnect();
 });
 
 const showProfileDialog = ref(false);
@@ -53,8 +54,8 @@ const items = [
         <SideBarButton icon="pi pi-cog" @click.native="showSettingsDialog = true"/>
       </div>
 
-      <ProfileModal v-model:visible="showProfileDialog" />
-      <SettingsModal v-model:visible="showSettingsDialog" />
     </div>
   </div>
+  <ProfileModal v-model:visible="showProfileDialog" />
+  <SettingsModal v-model:visible="showSettingsDialog" />
 </template>

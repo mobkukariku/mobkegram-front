@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Image, Dialog, FileUpload } from "primevue";
+import { Image, Dialog, FileUpload, Button } from "primevue";
 import { useProfileStore } from "@/features/profile/model/store";
 import InfoRow from "@/shared/components/modal/InfoRow.vue";
 import ChangeName from "@/features/profile/ui/ChangeName.vue";
+import {useAuthStore} from "@/features/auth/model/store";
+
 
 const profileStore = useProfileStore();
+const authStore = useAuthStore();
 const showDialog = ref(false);
 const profile = computed(() => profileStore.profile);
 const showNameChangeDialog = ref(false);
 
+const handleLogOut = async () => {
+  await authStore.logoutAction();
+}
+
 </script>
 
 <template>
-  <Dialog v-model:visible="showDialog" header="Profile" :style="{ width: '25rem', height: '32rem'}">
+  <Dialog v-model:visible="showDialog" header="Profile" :style="{ width: '25rem'}">
     <div class="flex flex-col items-center justify-center gap-5 relative" v-if="profile">
       <Image
           :src="profile.pictureURL"
@@ -43,6 +50,9 @@ const showNameChangeDialog = ref(false);
       <InfoRow icon="pi pi-at" label="Email" :value="profile.email" />
       <InfoRow icon="pi pi-asterisk" label="Username" :value="profile.username" />
     </div>
-    <ChangeName v-model:visible="showNameChangeDialog" />
+    <div class="flex justify-end  mt-[20px]">
+      <Button variant="outlined" class="font-medium h-[35px]" @click="handleLogOut">Log Out</Button>
+    </div>
+    <ChangeName v-model:visible="showNameChangeDialog" @click="() => authStore.logoutAction()" />
   </Dialog>
 </template>

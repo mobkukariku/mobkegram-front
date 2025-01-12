@@ -39,7 +39,6 @@ const handleSubmit = async () => {
         life: 3000,
       });
 
-      router.push("/main");
     } catch (error: any) {
       const message = error.response?.data?.message || "Invalid email or password.";
       errors.value.push(message);

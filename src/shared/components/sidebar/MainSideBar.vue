@@ -7,19 +7,20 @@ import SettingsModal from "@/features/settings/ui/SettingsModal.vue";
 import SideBarButton from "@/shared/components/sidebar/SideBarButton.vue";
 import {useRouter} from "vue-router";
 import {useAuthStore} from "@/features/auth/model/store";
+import {socketConnect} from "@/app/providers/socket";
 
 
 const profileStore = useProfileStore();
-const authStore = useAuthStore();
 const router = useRouter();
 const profile = computed(() => profileStore.profile);
 const loading = computed(() => profileStore.loading);
 const error = computed(() => profileStore.errors);
 
-onMounted(() => {
-  profileStore.fetchProfile();
-  authStore.socketConnect();
+onMounted(async () => {
+  await profileStore.fetchProfile(); // Ensure profile is fetched
+  socketConnect(); // Connect to the socket only after profile is available
 });
+
 
 const showProfileDialog = ref(false);
 const showSettingsDialog = ref(false);

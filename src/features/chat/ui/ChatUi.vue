@@ -9,7 +9,6 @@ import SendInput from "@/features/chat/ui/SendInput.vue";
 
     <div class="flex-grow overflow-auto">
     </div>
-
     <div class="sticky bottom-0 flex justify-center mb-[50px]">
       <SendInput />
     </div>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { getProfile, updateProfile } from '@/features/profile/model/api';
-import { Profile } from '@/features/profile/model/dto';
+import { Profile } from '@/shared/dtos/dto';
 
 export const useProfileStore = defineStore('profile', {
     state: () => ({
@@ -14,7 +14,9 @@ export const useProfileStore = defineStore('profile', {
             this.errors = null;
             try {
                 const data = await getProfile();
+                console.log(data);
                 this.setProfile(data.user);
+                localStorage.setItem("profileId", this.profile._id);
             } catch (err) {
                 this.errors = 'Ошибка при получении профиля';
                 console.error(err);
@@ -27,6 +29,7 @@ export const useProfileStore = defineStore('profile', {
         },
         clearProfile() {
             this.profile = null;
+            localStorage.removeItem("profileId");
         },
         async updateProfile(profile: Partial<Profile>) {
             if(!this.profile){

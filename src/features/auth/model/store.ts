@@ -1,23 +1,23 @@
 import {defineStore} from "pinia";
 import {login, logOut, register} from "./api.ts";
-import socket from "@/app/providers/socket";
-import router from "@/app/providers/router";
+import {socketDisconnect} from "@/app/providers/socket";
+
 
 export const useAuthStore = defineStore("auth", {
     state: () => ({
         isAuthenticated: false,
         isConnected: false,
+        onlineUsers: [],
+        socket: null,
     }),
     actions: {
         async loginAction(email: string, password: string) {
             try {
                 const data = await login(email, password);
                 this.isAuthenticated = true;
-                this.socketConnect();
+                this.profileUser = data.user;
                 localStorage.setItem("auth", this.isAuthenticated.toString());
-                setTimeout(() => {
-                    router.push({ name: "Main" });
-                }, 3000);
+                window.location.href = "/main";
                 return data;
             } catch (err) {
                 throw new Error(err);
@@ -27,7 +27,7 @@ export const useAuthStore = defineStore("auth", {
             try{
                 const data = await register(username, email, password);
                 this.isAuthenticated = true;
-                this.socketConnect();
+                this.profileUser = data.user;
                 localStorage.setItem("auth", this.isAuthenticated);
                 return data;
             } catch (err){
@@ -37,23 +37,14 @@ export const useAuthStore = defineStore("auth", {
         async logoutAction() {
             console.log("logoutAction called");
                 console.log("Logging out...");
-                this.socketDisconnect();
                 localStorage.removeItem("auth");
+                localStorage.removeItem("profileId");
                 const response = await logOut();
+                socketDisconnect();
                 this.isAuthenticated = false;
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 1000);
         },
-        socketConnect(){
-            if(!socket.connected){
-                socket.connect();
-            }
-        },
-        socketDisconnect(){
-          if(socket.connected){
-              socket.disconnect();
-          }
-        }
     },
 });

@@ -8,10 +8,12 @@ const emit = defineEmits(["update:visible"]);
 
 const profileStore = useProfileStore();
 const toast = useToast();
+
 const changeform = ref({
   firstName: "",
   lastName: ""
 });
+
 const errors = ref<string[]>([]);
 const isSubmitting = ref(false);
 

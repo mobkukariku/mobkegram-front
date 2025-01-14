@@ -5,6 +5,7 @@ import { useProfileStore } from "@/features/profile/model/store";
 import InfoRow from "@/shared/components/modal/InfoRow.vue";
 import ChangeName from "@/features/profile/ui/ChangeName.vue";
 import {useAuthStore} from "@/features/auth/model/store";
+import ChangeUsername from "@/features/profile/ui/ChangeUsername.vue";
 
 
 const profileStore = useProfileStore();
@@ -12,6 +13,8 @@ const authStore = useAuthStore();
 const showDialog = ref(false);
 const profile = computed(() => profileStore.profile);
 const showNameChangeDialog = ref(false);
+const showUsernameChangeDialog = ref(false);
+
 
 const handleLogOut = async () => {
   await authStore.logoutAction();
@@ -48,11 +51,12 @@ const handleLogOut = async () => {
     <div class="flex flex-col gap-3 mt-3" v-if="profile">
       <InfoRow icon="pi pi-user" label="Name" :value="profile.name" @click="showNameChangeDialog = true" />
       <InfoRow icon="pi pi-at" label="Email" :value="profile.email" />
-      <InfoRow icon="pi pi-asterisk" label="Username" :value="profile.username" />
+      <InfoRow icon="pi pi-asterisk" label="Username" :value="profile.username" @click="showUsernameChangeDialog = true" />
     </div>
     <div class="flex justify-end  mt-[20px]">
       <Button variant="outlined" class="font-medium h-[35px]" @click="handleLogOut">Log Out</Button>
     </div>
-    <ChangeName v-model:visible="showNameChangeDialog" @click="() => authStore.logoutAction()" />
+    <ChangeName v-model:visible="showNameChangeDialog"  />
+    <ChangeUsername v-model:visible="showUsernameChangeDialog" />
   </Dialog>
 </template>

@@ -1,17 +1,30 @@
 <script setup lang="ts">
+import { useChatStore } from "@/features/chat/model/store";
+import router from "@/app/providers/router";
 
-defineProps({
-  name: {
-    type: String,
-  },
-  email:{
-    type: String,
-  },
-  pictureURL: {
-    type: String,
-  }
-})
+const props = defineProps({
+  id: String,
+  name: String,
+  email: String,
+  pictureURL: String,
+});
+
+
+const chatStore = useChatStore();
+
+
+const handleButton = () => {
+  console.log("1");
+  chatStore.setUser({
+    id: props.id,
+    name: props.name,
+    email: props.email,
+    pictureURL: props.pictureURL,
+  });
+  router.push("/chat");
+};
 </script>
+
 
 <template>
   <div class="flex flex-row  bg-[#202024] p-[30px] rounded-lg gap-[20px] ">
@@ -21,7 +34,7 @@ defineProps({
       <p class="font-extralight opacity-70">{{email}}</p>
       <div class="mt-[10px] text-[#5A9CFF] cursor-pointer">
         <span class="pi pi-pen-to-square"></span>
-        <span class="font-semibold">
+        <span class="font-semibold" @click.prevent="handleButton">
           Write something
         </span>
       </div>

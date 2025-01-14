@@ -50,6 +50,11 @@ const routes: Array<RouteRecordRaw> = [
         beforeEnter: authRouteGuard,
     },
     {
+        path: '/chat',
+        name: 'Chat',
+        component: () => import('@/pages/chat/index.vue'),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'Not Found',
         component: () => import('@/pages/notFound/index.vue'),

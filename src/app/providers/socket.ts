@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { useProfileStore } from "@/features/profile/model/store";
 
-const socket = io("http://localhost:5001", {
+export const socket = io("http://localhost:5001", {
     autoConnect: false, // Prevents auto-connection on import
 });
 

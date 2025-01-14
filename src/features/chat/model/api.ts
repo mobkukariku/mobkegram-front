@@ -2,7 +2,7 @@ import axiosInstance from "@/app/providers/api";
 
 export const getUsersForSideBar = async () => {
     try{
-        const response = await axiosInstance.get("/api/messages/users");
+        const response = await axiosInstance.get("messages/users");
         return response.data;
     }catch(err){
         if (err.response && err.response.data && err.response.data.message) {
@@ -16,7 +16,7 @@ export const getUsersForSideBar = async () => {
 
 export const getMessages = async (id:string) => {
     try{
-        const response = await axiosInstance.get(`/api/messages/${id}`);
+        const response = await axiosInstance.get(`messages/${id}`);
         return response.data;
     }catch(err){
         if (err.response && err.response.data && err.response.data.message) {
@@ -28,9 +28,9 @@ export const getMessages = async (id:string) => {
     }
 }
 
-export const sendMessage = async (message:string, id:string) => {
+export const sendMessage = async (id:string, message:string) => {
     try{
-        const response = await axiosInstance.post(`/api/messages/${id}`, message);
+        const response = await axiosInstance.post(`messages/send/${id}`, {message});
         return response.data;
     }catch(err){
         if (err.response && err.response.data && err.response.data.message) {

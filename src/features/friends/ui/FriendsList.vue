@@ -16,6 +16,7 @@ onMounted(() => {
   <div v-if="friendsStore.loading">Loading...</div>
 
   <FriendCart
+      :id="friend._id"
       v-for="(friend) in friends"
       :key="friend._id"
       :name="friend.name"

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getProfile, updateProfile } from '@/features/profile/model/api';
+import {changeUsername, getProfile, updateProfile} from '@/features/profile/model/api';
 import { Profile } from '@/shared/dtos/dto';
 
 export const useProfileStore = defineStore('profile', {
@@ -14,7 +14,6 @@ export const useProfileStore = defineStore('profile', {
             this.errors = null;
             try {
                 const data = await getProfile();
-                console.log(data);
                 this.setProfile(data.user);
                 localStorage.setItem("profileId", this.profile._id);
             } catch (err) {
@@ -43,6 +42,23 @@ export const useProfileStore = defineStore('profile', {
                 this.setProfile(updatedProfile);
             }catch (err){
                 this.error = "Failed to update profile";
+                console.error(err);
+            }finally {
+                this.loading = false;
+            }
+        },
+        async changeUsername(username: string): Promise<void> {
+            if(!this.profile){
+                throw new Error("Profile not loaded. Please fetch the profile first.");
+            }
+            this.loading = true;
+            this.error = null;
+            try{
+                const updatedProfile = await changeUsername(username);
+                this.fetchProfile();
+                this.setProfile(updatedProfile);
+            }catch (err){
+                this.errors = 'Failed to update profile';
                 console.error(err);
             }finally {
                 this.loading = false;

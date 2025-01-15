@@ -37,3 +37,18 @@ export const changeUsername = async (username: string): Promise<Profile> => {
     }
 }
 
+export const changeAvatar = async (formData: FormData)=> {
+    try{
+        const response = await axiosInstance.post('profile/change-avatar', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        });
+        return response.data;
+    }catch(err){
+        if (err.response && err.response.data && err.response.data.message) {
+            throw new Error(err.response.data.message);
+        }
+        throw new Error("Failed to update profile. Please try again.");
+    }
+}

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import {changeUsername, getProfile, updateProfile} from '@/features/profile/model/api';
+import {changeUsername, getProfile, updateProfile, changeAvatar} from '@/features/profile/model/api';
 import { Profile } from '@/shared/dtos/dto';
 
 export const useProfileStore = defineStore('profile', {
@@ -61,6 +61,23 @@ export const useProfileStore = defineStore('profile', {
                 this.errors = 'Failed to update profile';
                 console.error(err);
             }finally {
+                this.loading = false;
+            }
+        },
+        async changeAvatar(file: FormData) {
+            if(!this.profile){
+                throw new Error("Profile not loaded. Please fetch the profile first.");
+            }
+            this.loading = true;
+            this.error = null;
+            try{
+                const updatedProfile = await changeAvatar(file);
+                this.fetchProfile();
+                this.profile.pictureURL = updatedProfile.url;
+            }catch (err){
+                this.errors = 'Failed to update profile';
+            }
+            finally {
                 this.loading = false;
             }
         }

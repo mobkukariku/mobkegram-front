@@ -1,15 +1,53 @@
 <script setup lang="ts">
-import {InputIcon, InputText, IconField} from "primevue";
+import { computed, onMounted, onUnmounted } from "vue";
+import { useChatStore } from "@/features/chat/model/store";
+import { InputIcon, InputText, IconField } from "primevue";
+import MessageSideBarItem from "@/shared/components/sidebar/MessageSideBarItem.vue";
+import router from "@/app/providers/router";
+
+const chatStore = useChatStore();
+const sidebarMessages = computed(() => chatStore.sideBarMessages);
+
+onMounted(() => {
+  chatStore.getSideBarMessages();
+  chatStore.subscribeToSidebarMessages();
+});
+
+onUnmounted(() => {
+  chatStore.unSubscribeFromSidebarMessages();
+});
+
+const handlePage = () => {
+  router.push("/chat");
+};
 </script>
 
 <template>
-  <div class="bg-[#27272A] w-[400px] border-r border-[#454545] p-[40px] px-[50px]">
-    <p class="text-2xl font-semibold mb-[20px]">Messages</p>
-    <div class="flex  flex-col">
-     <IconField>
-       <InputIcon class="pi pi-search" />
-       <InputText class="w-full" placeholder="Search..." />
-     </IconField>
+  <div class="bg-[#27272A] ml-[50px] w-[400px] h-screen border-r border-[#454545] p-10">
+    <!-- Заголовок -->
+    <p class="text-2xl font-semibold text-white mb-5">Messages</p>
+
+    <!-- Поле поиска -->
+    <div class="relative">
+      <IconField>
+        <InputIcon class="pi pi-search text-white" />
+        <InputText class="w-full bg-[#3E3E42] text-white placeholder-gray-400 px-4 py-2 rounded-md focus:outline-none" placeholder="Search..." />
+      </IconField>
+    </div>
+
+    <!-- Список сообщений -->
+    <div class="mt-8 space-y-4 overflow-y-auto">
+      <MessageSideBarItem
+          v-for="sidebarMessage in sidebarMessages"
+          :key="sidebarMessage._id"
+          :id="sidebarMessage.id"
+          :pictureURL="sidebarMessage.pictureURL"
+          :name="sidebarMessage.name"
+          :senderName="sidebarMessage.senderName"
+          :content="sidebarMessage.content"
+          class="cursor-pointer hover:bg-[#3E3E42] p-3 rounded-md transition-colors"
+          @click.prevent="handlePage"
+      />
     </div>
   </div>
 </template>

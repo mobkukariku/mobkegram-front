@@ -8,9 +8,8 @@
 </script>
 
 <template>
-  <Dialog v-model="showDialog" :modal="true" header="Settings" :style="{ width: '25rem', height: '19rem'}">
+  <Dialog v-model="showDialog" :modal="true" header="Settings" :style="{ width: '25rem'}">
     <div class="flex flex-col gap-3 mt-3">
-      <InfoRow icon="pi pi-user"  label="My Account"  />
       <InfoRow icon="pi pi-lightbulb"  label="Theme" value="Dark"  />
       <InfoRow icon="pi pi-language"  label="Language" value="English" />
 

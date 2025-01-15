@@ -3,6 +3,7 @@
 import RequestsList from "@/shared/components/list/RequestsList.vue";
 import {computed, onMounted} from "vue";
 import {useReceivedRequestsStore} from "@/features/receivedRequests/modal/store";
+import RequestsModalSkeleton from "@/shared/skeleton/RequestsModalSkeleton.vue";
 
 const receivedRequestsStore = useReceivedRequestsStore();
 
@@ -14,5 +15,5 @@ const requests = computed(()=>receivedRequestsStore.receivedRequests);
 </script>
 
 <template>
-  <RequestsList title="Received Requests" :List="requests"  />
+  <RequestsList :loadin="receivedRequestsStore.loading"  title="Received Requests" :List="requests" :isAdd="true"  />
 </template>

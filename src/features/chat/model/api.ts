@@ -41,3 +41,17 @@ export const sendMessage = async (id:string, message:string) => {
         )
     }
 }
+
+export const getSideBarMessages = async () => {
+    try{
+        const response = await axiosInstance.get("messages/users");
+        return response.data;
+    }catch(err){
+        if (err.response && err.response.data && err.response.data.message) {
+            throw new Error(err.response.data.message);
+        }
+        throw new Error(
+            "Failed to get users. Please try again."
+        )
+    }
+}

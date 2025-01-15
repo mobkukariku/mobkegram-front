@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
-import { getMessages, getUsersForSideBar, sendMessage } from "@/features/chat/model/api";
+import {getMessages, getSideBarMessages, getUsersForSideBar, sendMessage} from "@/features/chat/model/api";
 import { socket } from "@/app/providers/socket";
 
 export const useChatStore = defineStore('chat', {
     state: () => ({
         messages: [] as Array<{ id: string; content: string; senderID: string; receiverID: string }>,
         users: [],
+        sideBarMessages: [],
         currentUser: null as null | {
             id: string;
             name: string;
@@ -70,5 +71,39 @@ export const useChatStore = defineStore('chat', {
         unSubscribeFromMessages() {
             socket.off("newMessage");
         },
+        async getSideBarMessages() {
+            this.isMessageLoading = true;
+            try{
+                const data = await getSideBarMessages();
+                this.setSideBarMessages(data);
+            }catch(err){
+                console.error(err);
+            }
+        },
+        setSideBarMessages(sideBarMessages) {
+            this.sideBarMessages = sideBarMessages;
+        },
+        subscribeToSidebarMessages() {
+            socket.on("sidebarMessage", (newMessage) => {
+                if (!newMessage || !newMessage._id) {
+                    console.error("Invalid message format from WebSocket");
+                    return;
+                }
+
+                const existingIndex = this.sideBarMessages.findIndex(
+                    (message) => message._id === newMessage._id
+                );
+
+                if (existingIndex !== -1) {
+                    this.sideBarMessages[existingIndex] = newMessage;
+                } else {
+                    this.sideBarMessages.unshift(newMessage);
+                }
+            });
+        },
+        unSubscribeFromSidebarMessages() {
+            socket.off("sidebarMessage");
+        },
     },
 });
+

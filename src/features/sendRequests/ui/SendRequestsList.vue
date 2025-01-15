@@ -15,5 +15,5 @@ const requests = computed(() => sendRequestsStore.sentRequests);
 </script>
 
 <template>
-  <RequestsList title="My Requests" :List="requests" />
+  <RequestsList :loading="sendRequestsStore.loading" title="My Requests" :List="requests" :isAdd="false" />
 </template>

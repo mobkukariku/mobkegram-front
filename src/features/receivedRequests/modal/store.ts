@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {getReceivedRequest} from "@/features/receivedRequests/modal/api";
+import {getReceivedRequest, postReceivedRequest} from "@/features/receivedRequests/modal/api";
 
 
 export const useReceivedRequestsStore = defineStore("receivedRequests", {

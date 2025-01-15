@@ -6,13 +6,12 @@ const inputText = ref("");
 const isButtonActive = computed(() => inputText.value.trim().length > 0);
 const chatStore = useChatStore();
 
-// Функция для отправки сообщения
+
 const handleSend = async () => {
   if (isButtonActive.value) {
     await chatStore.sendMessage(inputText.value);
     inputText.value = "";
 
-    // Прокрутка вниз после отправки сообщения
     const chatEndRef = document.querySelector("#chat-end");
     chatEndRef?.scrollIntoView({ behavior: "smooth" });
   }

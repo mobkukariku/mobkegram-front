@@ -10,17 +10,17 @@ const selectedUser = computed(() => chatStore.currentUser || {});
 const messages = computed(() => chatStore.messages);
 const chatEndRef = ref<HTMLElement | null>(null);
 
-// Прокрутка вниз
+
 const scrollToBottom = () => {
   chatEndRef.value?.scrollIntoView({ behavior: "smooth" });
 };
 
-// Прокрутка при изменении сообщений
+
 watch(messages, () => {
   scrollToBottom();
 });
 
-// Прокрутка при загрузке
+
 onMounted(() => {
   scrollToBottom();
 });
@@ -34,13 +34,8 @@ onMounted(() => {
     />
     <div class="flex-grow overflow-auto">
       <ChatContainer />
-      <!-- Прокрутка вниз -->
       <div id="chat-end" ref="chatEndRef"></div>
     </div>
     <SendInput />
-  </div>
-
-  <div v-else class="flex items-center justify-center h-full">
-    <p class="text-gray-500">Выберите пользователя, чтобы начать чат</p>
   </div>
 </template>

@@ -2,6 +2,7 @@
 import { useFriendsStore } from "@/features/friends/model/store";
 import { computed, onMounted } from "vue";
 import FriendCart from "@/features/friends/ui/FriendCart.vue";
+import FriendRequestSkeleton from "@/shared/skeleton/FriendRequestSkeleton.vue";
 
 const friendsStore = useFriendsStore();
 
@@ -13,9 +14,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="friendsStore.loading">Loading...</div>
+  <FriendRequestSkeleton v-if="friendsStore.loading" />
 
   <FriendCart
+      v-else
       :id="friend._id"
       v-for="(friend) in friends"
       :key="friend._id"

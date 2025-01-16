@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <Button class="mb-2">
+  <Button class="mb-2 ">
     <i :class="icon" style="font-size: 1.3em"></i>
   </Button>
 </template>

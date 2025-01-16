@@ -34,7 +34,7 @@ const toggle = (event: MouseEvent) => {
 </script>
 
 <template>
-  <div class="bg-[#27272A] w-full min-h-[70px] border-b border-[#454545] flex justify-between flex-row items-center px-[60px]">
+  <div class="dark:bg-[#27272A] bg-[#D9D9D9] w-full min-h-[70px] border-b dark:border-[#454545] border-[#ADADAD] flex justify-between flex-row items-center px-[60px]">
     <div class="flex items-center">
       <img :src="pictureURL" alt="ava" class="w-[50px] h-[50px] object-cover rounded-full">
       <div class="flex flex-col ml-[15px]">

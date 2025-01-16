@@ -18,9 +18,9 @@ const error = computed(() => profileStore.errors);
 
 onMounted(async () => {
   if (!profile.value) {
-    await profileStore.fetchProfile(); // Ensure profile is fetched only if needed
+    await profileStore.fetchProfile();
   }
-  socketConnect(); // Connect to the socket only after profile is available
+  socketConnect();
 });
 
 const showProfileDialog = ref(false);
@@ -41,7 +41,6 @@ const items = [
 
     <p v-if="error" class="text-red-500">{{ error }}</p>
 
-    <!-- Условный рендеринг профиля -->
     <div v-show="profile" class="flex flex-col items-center justify-between mt-5">
       <Avatar
           :image="profile?.pictureURL"

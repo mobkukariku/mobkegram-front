@@ -53,7 +53,7 @@ const handleSubmit = async () => {
 <template>
   <form
       @submit.prevent="handleSubmit"
-      class="bg-zinc-800 p-6 shadow-lg flex flex-col gap-3 w-[400px]"
+      class="dark:bg-zinc-800  bg-[#D9D9D9] p-6 shadow-lg flex flex-col gap-3 w-[400px]"
   >
     <p class="text-2xl text-center mt-2 mb-3">Login</p>
 

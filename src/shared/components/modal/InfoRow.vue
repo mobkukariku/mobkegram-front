@@ -14,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-row justify-between hover:bg-black/30 transition-colors p-2 rounded-md cursor-pointer">
+  <div class="flex flex-row justify-between dark:hover:bg-black/30 hover:bg-black/10 transition-colors p-2 rounded-md cursor-pointer">
     <div class="flex flex-row items-center gap-4">
       <i :class="icon"></i>
       <p>{{ label }}</p>

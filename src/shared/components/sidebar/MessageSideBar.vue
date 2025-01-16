@@ -23,15 +23,15 @@ const handlePage = () => {
 </script>
 
 <template>
-  <div class="bg-[#27272A] ml-[50px] w-[400px] h-screen border-r border-[#454545] p-10">
+  <div class="dark:bg-[#27272A] bg-[#D9D9D9] ml-[50px] w-[400px] h-screen  border-r dark:border-[#454545] border-[#ADADAD] p-10">
     <!-- Заголовок -->
-    <p class="text-2xl font-semibold text-white mb-5">Messages</p>
+    <p class="text-2xl font-semibold dark:text-white mb-5">Messages</p>
 
     <!-- Поле поиска -->
     <div class="relative">
       <IconField>
         <InputIcon class="pi pi-search text-white" />
-        <InputText class="w-full bg-[#3E3E42] text-white placeholder-gray-400 px-4 py-2 rounded-md focus:outline-none" placeholder="Search..." />
+        <InputText class="w-full bg-[#3E3E42] dark:text-white placeholder-gray-400 px-4 py-2 rounded-md focus:outline-none" placeholder="Search..." />
       </IconField>
     </div>
 

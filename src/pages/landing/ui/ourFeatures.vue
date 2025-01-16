@@ -22,8 +22,8 @@ const values = [
 </script>
 
 <template>
-  <div class="bg-[#171717] relative z-100 mt-[-100px] p-[60px] h-[600px]">
-    <h1 class="text-3xl font-bold text-white text-center mt-[30px]">OUR FEATURES</h1>
+  <div class="dark:bg-[#171717] bg-[#D9D9D9] relative z-100 mt-[-100px] p-[60px] h-[600px]">
+    <h1 class="text-3xl font-bold dark:text-white text-center mt-[30px]">OUR FEATURES</h1>
     <Container class="mt-10 flex justify-center gap-10">
       <FeatureCard
           v-for="(value, index) in values" :key="index"

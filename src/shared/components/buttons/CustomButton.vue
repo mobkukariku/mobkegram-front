@@ -6,7 +6,7 @@ defineProps({
 </script>
 
 <template>
-  <button class="hover:bg-[#202024] p-[10px] rounded-lg w-full transition-all flex">
+  <button class="dark:hover:bg-[#202024] hover:bg-[#EBEBEB]  p-[10px] rounded-lg w-full transition-all flex">
     {{text}}
   </button>
 </template>

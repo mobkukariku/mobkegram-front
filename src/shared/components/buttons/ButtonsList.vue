@@ -6,7 +6,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="bg-[#27272A] p-[20px] w-[300px] rounded-xl h-fit border border-[#454545]">
+  <div class="dark:bg-[#27272A] bg-[#D9D9D9] p-[20px] w-[300px] rounded-xl h-fit border dark:border-[#454545] border-[#ADADAD]">
     <CustomButton text="All Friends" @click="router.push('/friends')" />
     <CustomButton text="Friend Requests" @click="router.push('/sendRequests')" />
     <CustomButton text="Outgoing Requests" @click="router.push('/receivedRequests')" />

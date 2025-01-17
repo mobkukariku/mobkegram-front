@@ -27,10 +27,10 @@ const handleButton = () => {
 
 
 <template>
-  <div class="flex flex-row  dark:bg-[#202024] bg-[#EBEBEB] p-[30px] rounded-lg gap-[20px] ">
+  <div class="flex flex-row max-sm:flex-col max-sm:justify-center max-sm:items-center  dark:bg-[#202024] bg-[#EBEBEB] p-[30px] rounded-lg gap-[20px] ">
     <img :src="pictureURL" class="w-[120px] h-[120px] rounded-full" :alt="name" />
-    <div class="flex flex-col justify-center ">
-      <p class="text-[18px] font-semibold">{{name}}</p>
+    <div class="flex flex-col justify-center max-sm:text-center ">
+      <p class="text-[18px] font-semibold max-sm:">{{name}}</p>
       <p class="font-light opacity-70">{{email}}</p>
       <div class="mt-[10px] text-[#5A9CFF] cursor-pointer">
         <span class="pi pi-pen-to-square"></span>

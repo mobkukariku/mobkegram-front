@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useChatStore } from "@/features/chat/model/store";
-import {InputText, Button} from "primevue";
+import { InputText, Button } from "primevue";
 const inputText = ref("");
 const isButtonActive = computed(() => inputText.value.trim().length > 0);
 const chatStore = useChatStore();
-
 
 const handleSend = async () => {
   if (isButtonActive.value) {
@@ -19,12 +18,16 @@ const handleSend = async () => {
 </script>
 
 <template>
-  <div class="sticky bottom-0 flex justify-center mb-[50px]">
-    <form @submit.prevent="handleSend" class="relative flex gap-3">
-      <InputText placeholder="Send a message" v-model="inputText" class="flex  h-[60px] w-[700px] pr-[50px]" />
+  <div class="fixed bottom-0  max-sm:bottom-12 w-full flex justify-center items-center mb-[20px] z-10">
+    <form @submit.prevent="handleSend" class="relative  justify-center mr-[400px] flex gap-3 w-full max-md:mr-[0px]">
+      <InputText
+          placeholder="Send a message"
+          v-model="inputText"
+          class="flex w-full max-w-[700px] max-sm:w-[50%]  "
+      />
       <Button
           :class="[
-          'absolute right-0 top-1/2 transform -translate-y-1/2 -translate-x-[70px] w-[40px] h-[40px] transition-opacity',
+          'w-[40px] h-[40px] transition-opacity',
         ]"
           icon="pi pi-send"
           type="submit"

@@ -10,8 +10,8 @@ const skeletonCount = ref(4);
     <Skeleton
         v-for="index in skeletonCount"
         :key="index"
-        width="13rem"
-        height="15rem"
+        width="15rem"
+        height="17rem"
     ></Skeleton>
   </div>
 </template>

@@ -7,6 +7,6 @@ import StartConversation from "@/features/chat/ui/StartConversation.vue";
 </script>
 
 <template>
-  <StartConversation />
+  <StartConversation class="max-sm:hidden" />
 
 </template>

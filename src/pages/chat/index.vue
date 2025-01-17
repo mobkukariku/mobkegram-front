@@ -5,13 +5,11 @@ import SideBarLayout from "@/app/layouts/SideBarLayout.vue";
 </script>
 
 <template>
-  <SideBarLayout>
-    <MessageSideBarLayout>
+  <SideBarLayout >
+    <MessageSideBarLayout class="max-sm:hidden">
       <ChatPage />
     </MessageSideBarLayout>
+
+    <ChatPage class="max-sm:flex hidden " />
   </SideBarLayout>
 </template>
-
-<style scoped>
-
-</style>

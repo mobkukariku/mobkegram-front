@@ -34,7 +34,7 @@ const items = [
 </script>
 
 <template>
-  <div class="bg-[#34D399]  w-[60px] fixed h-screen flex flex-col items-center justify-between">
+  <div class="bg-[#34D399]   w-[60px] fixed h-screen flex flex-col items-center justify-between">
     <div v-if="loading">
       <Skeleton shape="circle" size="4rem" class="mr-2" />
     </div>

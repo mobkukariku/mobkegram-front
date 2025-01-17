@@ -3,7 +3,7 @@
 </script>d
 
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto max-w-[1500px]">
     <slot></slot>
   </div>
 </template>

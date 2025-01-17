@@ -10,7 +10,7 @@ const skeletonCount = ref(4);
     <Skeleton
         v-for="index in skeletonCount"
         :key="index"
-        class="w-full"
+        class="w-full "
         height="10rem"
     />
   </div>

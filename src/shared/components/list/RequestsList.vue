@@ -22,7 +22,7 @@ const handleButton = async (username:string, accept:boolean) => {
 </script>
 
 <template>
-  <div class="dark:bg-[#27272A] bg-[#D9D9D9] p-[20px] rounded-xl  border dark:border-[#454545] border-[#ADADAD] w-[850px]" >
+  <div class="dark:bg-[#27272A] max-md:w-[95%] bg-[#D9D9D9] p-[20px] rounded-xl  border dark:border-[#454545] border-[#ADADAD] w-[850px]" >
       <p class="text-xl font-bold mt-[20px]">{{props.title}}</p>
       <div v-if="!props.loading ">
       <div class="flex flex-wrap gap-5 mt-[20px]"  v-if="props.List && props.List.length>0">

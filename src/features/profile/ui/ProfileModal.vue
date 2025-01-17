@@ -44,7 +44,7 @@ const handleLogOut = async () => {
 </script>
 
 <template>
-  <Dialog v-model:visible="showDialog" header="Profile" :style="{ width: '25rem'}">
+  <Dialog v-model:visible="showDialog" header="Profile" class="w-[400px] max-sm:w-[350px]">
     <div class="flex flex-col items-center justify-center gap-5 relative" v-if="profile">
       <img
           :src="profile.pictureURL"

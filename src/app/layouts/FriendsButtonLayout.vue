@@ -4,8 +4,8 @@ import ButtonsList from "@/shared/components/buttons/ButtonsList.vue";
 </script>
 
 <template >
-  <Container class="flex h-fit mt-[100px] gap-5 justify-center ">
-    <slot />
+  <Container class="flex max-md:flex-col h-fit max-md:mt-[20px] mt-[100px] gap-5 justify-center  max-md:items-center max-md:ml-[60px] ">
     <ButtonsList />
+    <slot />
   </Container>
 </template>

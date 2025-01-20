@@ -10,7 +10,6 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "@/features/auth/model/store";
 import { socketConnect } from "@/app/providers/socket";
 
-
 const profileStore = useProfileStore();
 const router = useRouter();
 const profile = computed(() => profileStore.profile);
@@ -24,13 +23,10 @@ onMounted(async () => {
   socketConnect();
 });
 
-
 const visible = ref(false);
 const showProfileDialog = ref(false);
 const showSettingsDialog = ref(false);
-
 </script>
-
 
 <template>
   <div class="card flex justify-center absolute z-20 ">
@@ -46,23 +42,32 @@ const showSettingsDialog = ref(false);
                         </span>
           </div>
           <div class="overflow-y-auto mt-[20px]">
-            <ul class="list-none p-4 m-0">
+            <ul class="list-none flex flex-col gap-3 p-4 m-0">
               <SideBarButton icon="pi-home" name="Home" @click.native="router.push(`/main`)" />
               <SideBarButton icon="pi-users" name="Friends" @click.native="router.push(`/friends`)" />
               <SideBarButton icon="pi-cog" name="Settings" @click.native="showSettingsDialog = true" />
             </ul>
           </div>
           <div class="mt-auto">
-            <hr class="mb-4 mx-4 border-t border-0 border-surface-200 dark:border-surface-700" />
+            <hr class="mb-4 mx-4  border-t border-0 border-surface-200 dark:border-gray-300 border-gray-700" />
             <a v-ripple class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded text-surface-700 hover:bg-surface-100 dark:text-surface-0 dark:hover:bg-surface-800 duration-150 transition-colors p-ripple">
-              <Avatar
-                  :image="profile?.pictureURL"
-                  size="large"
-                  class=" mr-2 cursor-pointer hover:opacity-80 transition-opacity"
-                  shape="circle"
-                  @click="showProfileDialog = true"
-              />
-              <span class="font-bold">{{profile.name}}</span>
+              <template v-if="loading">
+                <Skeleton shape="circle" size="3rem" class="mr-2" />
+                <Skeleton width="8rem" />
+              </template>
+              <template v-else-if="profile">
+                <Avatar
+                    :image="profile?.pictureURL"
+                    size="large"
+                    class="mr-2 cursor-pointer hover:opacity-80 transition-opacity"
+                    shape="circle"
+                    @click="showProfileDialog = true"
+                />
+                <span class="font-bold">{{ profile.name }}</span>
+              </template>
+              <template v-else>
+                <span class="text-red-500">Error loading profile</span>
+              </template>
             </a>
           </div>
         </div>

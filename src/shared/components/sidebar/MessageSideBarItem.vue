@@ -7,6 +7,7 @@ const props = defineProps({
   id: String,
   pictureURL: String,
   name: String,
+  email: String,
   senderName: String,
   content: String,
 });
@@ -18,10 +19,10 @@ const chatStore = useChatStore();
 const handleButton = () => {
   console.log("1");
   chatStore.setUser({
-    id: props.id,
-    name: props.name,
-    email: props.email,
-    pictureURL: props.pictureURL,
+    id: props.id || "",
+    name: props.name || "",
+    email: props.email || "",
+    pictureURL: props.pictureURL || "",
   });
   router.push("/chat");
 };

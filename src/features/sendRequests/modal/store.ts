@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
-import {sendRequest, getSendRequest, getReceivedRequest} from "./api";
+import {sendRequest, getSendRequest,} from "./api";
+import {FriendUser} from "@/shared/dtos/dto";
 
 export const useSendRequestsStore = defineStore("requests", {
     state: () => ({

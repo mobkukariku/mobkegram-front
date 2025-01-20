@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
 import {getMessages, getSideBarMessages, getUsersForSideBar, sendMessage} from "@/features/chat/model/api";
 import { socket } from "@/app/providers/socket";
+import {SideBarMessage} from "@/shared/dtos/dto";
 
 export const useChatStore = defineStore('chat', {
     state: () => ({
         messages: [] as Array<{ id: string; content: string; senderID: string; receiverID: string }>,
-        users: [],
-        sideBarMessages: [],
+        users: [] as Array<{ id: string; name: string; email: string; pictureURL: string }>,
+        sideBarMessages: [] as Array<SideBarMessage>,
         currentUser: null as null | {
             id: string;
             name: string;

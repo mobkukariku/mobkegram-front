@@ -16,3 +16,21 @@ export interface Profile {
     friendRequests: string[],
     sentRequests: string[]
 }
+
+
+export interface SideBarMessage {
+    _id: string;
+    id: string;
+    pictureURL: string;
+    name: string;
+    senderName: string;
+    content: string;
+}
+
+export interface FriendRequest {
+    name: string;
+    id: string;
+    pictureURL: string;
+    username: string;
+    email: string;
+}

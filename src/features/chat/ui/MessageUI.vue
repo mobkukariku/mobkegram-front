@@ -13,7 +13,7 @@ const currentUser = computed(() => chatStore.currentUser);
 </script>
 
 <template>
-  <div class="mx-[20px]">
+  <div class="mx-[20px] max-md:mx-[0px]">
     <div v-if="currentUser && props.senderID !== currentUser.id" class="flex justify-end items-end">
       <div class="w-fit max-w-[300px] bg-[#34D399] text-black p-[10px] px-[20px] rounded-tl-lg rounded-tr-sm rounded-bl-md rounded-br-xl break-words">
         <p class="text-end break-words">

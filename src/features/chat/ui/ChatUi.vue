@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="selectedUser" class="flex flex-col max-sm:ml-[30px] w-full h-screen">
+  <div v-if="selectedUser" class="flex flex-col w-full h-screen">
     <ChatHeader
         :name="selectedUser.name"
         :pictureURL="selectedUser.pictureURL"

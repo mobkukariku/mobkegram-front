@@ -23,11 +23,9 @@ const handlePage = () => {
 </script>
 
 <template>
-  <div class="dark:bg-[#27272A] bg-[#D9D9D9]  w-[400px] h-screen  border-r dark:border-[#454545] border-[#ADADAD] p-10">
-    <!-- Заголовок -->
+  <div class="dark:bg-[#27272A] bg-[#D9D9D9] max-md:w-full w-[400px] h-screen  border-r dark:border-[#454545] border-[#ADADAD] p-10">
     <p class="text-2xl font-semibold dark:text-white mb-5">Messages</p>
 
-    <!-- Поле поиска -->
     <div class="relative">
       <IconField>
         <InputIcon class="pi pi-search text-white" />
@@ -35,7 +33,6 @@ const handlePage = () => {
       </IconField>
     </div>
 
-    <!-- Список сообщений -->
     <div class="mt-8 space-y-4 overflow-y-auto">
       <MessageSideBarItem
           v-for="sidebarMessage in sidebarMessages"

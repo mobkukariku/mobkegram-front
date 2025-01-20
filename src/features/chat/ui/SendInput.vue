@@ -18,12 +18,12 @@ const handleSend = async () => {
 </script>
 
 <template>
-  <div class="fixed bottom-0  max-sm:bottom-12 w-full flex justify-center items-center mb-[20px] z-10">
+  <div class="fixed bottom-0 w-full flex justify-center items-center mb-[20px] z-10">
     <form @submit.prevent="handleSend" class="relative  justify-center mr-[400px] flex gap-3 w-full max-md:mr-[0px]">
       <InputText
           placeholder="Send a message"
           v-model="inputText"
-          class="flex w-full max-w-[700px] max-sm:w-[50%]  "
+          class="flex w-full max-w-[700px] max-md:w-[70%] "
       />
       <Button
           :class="[

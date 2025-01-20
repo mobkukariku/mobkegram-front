@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import {Button} from "primevue";
 
-defineProps({
+const props = defineProps({
   icon: String,
-})
+  name: String,
+});
 </script>
 
 <template>
-  <Button class="mb-2 ">
-    <i :class="icon" style="font-size: 1.3em"></i>
-  </Button>
+  <li>
+    <a v-ripple class="flex items-center cursor-pointer dark:hover:border-black hover:border-gray-400 p-4 rounded text-surface-700 hover:bg-surface-100 dark:text-surface-0  duration-150 transition-colors">
+      <i :class="`pi mr-2 ${props.icon}`"></i>
+      <span class="font-medium">{{ props.name }}</span>
+    </a>
+  </li>
 </template>
-
-<style scoped>
-
-</style>

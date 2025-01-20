@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { useProfileStore } from "@/features/profile/model/store";
 
-export const socket = io("https://mobkegram-back-production.up.railway.app/", {
+export const socket = io(import.meta.env.VITE_BACKEND_SOCKET, {
     autoConnect: false, // Prevents auto-connection on import
 });
 

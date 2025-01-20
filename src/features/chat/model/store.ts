@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import {getMessages, getSideBarMessages, getUsersForSideBar, sendMessage} from "@/features/chat/model/api";
 import { socket } from "@/app/providers/socket";
-import {SideBarMessage} from "@/shared/dtos/dto";
+import {Message, SideBarMessage} from "@/shared/dtos/dto";
 
 export const useChatStore = defineStore('chat', {
     state: () => ({
-        messages: [] as Array<{ id: string; content: string; senderID: string; receiverID: string }>,
+        messages: [] as Message[],
         users: [] as Array<{ id: string; name: string; email: string; pictureURL: string }>,
         sideBarMessages: [] as Array<SideBarMessage>,
         currentUser: null as null | {
@@ -81,7 +81,7 @@ export const useChatStore = defineStore('chat', {
                 console.error(err);
             }
         },
-        setSideBarMessages(sideBarMessages) {
+        setSideBarMessages(sideBarMessages:SideBarMessage[]) {
             this.sideBarMessages = sideBarMessages;
         },
         subscribeToSidebarMessages() {

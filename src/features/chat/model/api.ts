@@ -5,9 +5,6 @@ export const getUsersForSideBar = async () => {
         const response = await axiosInstance.get("messages/users");
         return response.data;
     }catch(err){
-        if (err.response && err.response.data && err.response.data.message) {
-            throw new Error(err.response.data.message);
-        }
         throw new Error(
             "Failed to get users. Please try again."
         )
@@ -19,9 +16,6 @@ export const getMessages = async (id:string) => {
         const response = await axiosInstance.get(`messages/${id}`);
         return response.data;
     }catch(err){
-        if (err.response && err.response.data && err.response.data.message) {
-            throw new Error(err.response.data.message);
-        }
         throw new Error(
             "Failed to get messages. Please try again."
         )
@@ -33,9 +27,6 @@ export const sendMessage = async (id:string, message:string) => {
         const response = await axiosInstance.post(`messages/send/${id}`, {message});
         return response.data;
     }catch(err){
-        if (err.response && err.response.data && err.response.data.message) {
-            throw new Error(err.response.data.message);
-        }
         throw new Error(
             "Failed to get messages. Please try again."
         )
@@ -47,9 +38,6 @@ export const getSideBarMessages = async () => {
         const response = await axiosInstance.get("messages/users");
         return response.data;
     }catch(err){
-        if (err.response && err.response.data && err.response.data.message) {
-            throw new Error(err.response.data.message);
-        }
         throw new Error(
             "Failed to get users. Please try again."
         )

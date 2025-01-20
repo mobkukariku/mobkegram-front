@@ -1,6 +1,5 @@
 import type {RouteRecordRaw} from "vue-router";
 import {createRouter, createWebHistory} from "vue-router";
-import {authGuard} from "@/shared/middleware/authGuard";
 import {authRouteGuard} from "@/app/middlewares/authRouteGuard";
 import {mainRouteGuard} from "@/app/middlewares/mainRouteGuard";
 

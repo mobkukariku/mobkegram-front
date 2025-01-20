@@ -1,10 +1,10 @@
 import {defineStore} from "pinia";
 import {getReceivedRequest, postReceivedRequest} from "@/features/receivedRequests/modal/api";
-
+import {FriendRequest, FriendUser} from "@/shared/dtos/dto";
 
 export const useReceivedRequestsStore = defineStore("receivedRequests", {
     state: () => ({
-        receivedRequests: null as FriendUser[] | null,
+        receivedRequests: null as FriendRequest[] | null,
         loading: false,
         errors: null as string | null,
     }),
@@ -34,7 +34,7 @@ export const useReceivedRequestsStore = defineStore("receivedRequests", {
                 this.loading = false;
             }
         },
-        setReceivedRequest(received: FriendUser[]) {
+        setReceivedRequest(received: FriendRequest[]) {
             this.receivedRequests = received;
         }
     }

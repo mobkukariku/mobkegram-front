@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {login, logOut, register} from "./api.ts";
+import {login, logOut, register} from "./api";
 import {socketDisconnect} from "@/app/providers/socket";
 
 
@@ -15,23 +15,21 @@ export const useAuthStore = defineStore("auth", {
             try {
                 const data = await login(email, password);
                 this.isAuthenticated = true;
-                this.profileUser = data.user;
                 localStorage.setItem("auth", this.isAuthenticated.toString());
                 window.location.href = "/main";
                 return data;
             } catch (err) {
-                throw new Error(err);
+                console.error(err);
             }
         },
         async registerAction(username:string, email: string, password: string) {
             try{
                 const data = await register(username, email, password);
                 this.isAuthenticated = true;
-                this.profileUser = data.user;
-                localStorage.setItem("auth", this.isAuthenticated);
+                localStorage.setItem("auth", this.isAuthenticated.toString());
                 return data;
             } catch (err){
-                throw new Error(err);
+                console.error(err);
             }
         },
         async logoutAction() {

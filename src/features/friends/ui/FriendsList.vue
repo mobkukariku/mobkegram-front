@@ -18,11 +18,11 @@ onMounted(() => {
 
   <FriendCart
       v-else
-      :id="friend._id"
+      :id="friend.id"
       v-for="(friend) in friends"
-      :key="friend._id"
+      :key="friend.id"
       :name="friend.name"
       :email="friend.email"
-      :pictureURL="friend.pictureURL"
+      :pictureURL="friend.pictureURL ?? undefined"
   />
 </template>

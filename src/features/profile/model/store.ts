@@ -14,8 +14,8 @@ export const useProfileStore = defineStore('profile', {
             this.errors = null;
             try {
                 const data = await getProfile();
-                this.setProfile(data.user);
-                localStorage.setItem("profileId", this.profile._id);
+                this.setProfile(data);
+                localStorage.setItem("profileId", data.id);
             } catch (err) {
                 this.errors = 'Ошибка при получении профиля';
                 console.error(err);
@@ -35,13 +35,13 @@ export const useProfileStore = defineStore('profile', {
                 throw new Error("Profile not loaded. Please fetch the profile first.");
             }
             this.loading = true;
-            this.error = null;
+            this.errors = null;
             try{
                 const updatedProfile = await updateProfile(profile);
                 this.fetchProfile();
                 this.setProfile(updatedProfile);
             }catch (err){
-                this.error = "Failed to update profile";
+                this.errors = "Failed to update profile";
                 console.error(err);
             }finally {
                 this.loading = false;
@@ -52,7 +52,7 @@ export const useProfileStore = defineStore('profile', {
                 throw new Error("Profile not loaded. Please fetch the profile first.");
             }
             this.loading = true;
-            this.error = null;
+            this.errors = null;
             try{
                 const updatedProfile = await changeUsername(username);
                 this.fetchProfile();
@@ -69,7 +69,7 @@ export const useProfileStore = defineStore('profile', {
                 throw new Error("Profile not loaded. Please fetch the profile first.");
             }
             this.loading = true;
-            this.error = null;
+            this.errors = null;
             try{
                 const updatedProfile = await changeAvatar(file);
                 this.fetchProfile();

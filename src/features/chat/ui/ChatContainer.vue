@@ -3,9 +3,10 @@ import { computed, onMounted, onUnmounted } from "vue";
 import { useChatStore } from "@/features/chat/model/store";
 import MessageUI from "@/features/chat/ui/MessageUI.vue";
 
+
 const chatStore = useChatStore();
 const friendId = computed(() => chatStore.currentUser?.id);
-const messages = computed(() => chatStore.messages);
+const messages = computed(() => chatStore.messages || []);
 
 onMounted(() => {
   if (friendId.value) {

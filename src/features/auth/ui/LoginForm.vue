@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { InputText, Password, Button, Message, useToast } from "primevue";
-import { useAuthStore } from "../model/store.ts";
+import { useAuthStore } from "../model/store";
 import { useRouter } from "vue-router";
 
 const form = ref({

@@ -5,9 +5,11 @@ import { ref } from "vue";
 defineProps({
   name: {
     type: String,
+    default: "",
   },
   pictureURL: {
     type: String,
+    default: "",
   },
 });
 

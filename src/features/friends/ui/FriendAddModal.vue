@@ -33,7 +33,7 @@ const handleSubmit = async () => {
       detail: "Request sent successfully!",
       life: 3000,
     });
-  } catch (err) {
+  } catch (err:any) {
     console.error("Error sending request:", err);
     const message = err?.response?.data?.message || "An error occurred.";
     errors.value.push(message);
@@ -57,7 +57,7 @@ const handleSubmit = async () => {
         >
           {{ error }}
         </Message>
-        <Button class="h-[35px] font-bold" type="submit" :disabled="isSubmitting.value">Add</Button>
+        <Button class="h-[35px] font-bold" type="submit" :disabled="isSubmitting">Add</Button>
       </div>
     </form>
   </Dialog>

@@ -2,12 +2,12 @@ import { io } from "socket.io-client";
 import { useProfileStore } from "@/features/profile/model/store";
 
 export const socket = io(import.meta.env.VITE_BACKEND_SOCKET, {
-    autoConnect: false, // Prevents auto-connection on import
+    autoConnect: false,
 });
 
 export const socketConnect = () => {
     const profileStore = useProfileStore();
-    const userId = profileStore.profile?._id || localStorage.getItem("profileId");
+    const userId = profileStore.profile?.id || localStorage.getItem("profileId");
 
     if (!userId) {
         return;

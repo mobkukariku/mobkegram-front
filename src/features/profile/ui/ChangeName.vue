@@ -43,7 +43,7 @@ const handleSubmit = async () => {
         life: 3000
       });
         closeDialog();
-    } catch (err) {
+    } catch (err:any) {
       const message = err.response?.data?.message || "An error occurred.";
       errors.value.push(message);
     }

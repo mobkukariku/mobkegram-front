@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useChatStore } from "@/features/chat/model/store";
 import { computed } from "vue";
-import {useProfileStore} from "@/features/profile/model/store";
 
 const props = defineProps({
   senderID: String,
@@ -9,7 +8,7 @@ const props = defineProps({
 
 const chatStore = useChatStore();
 
-const currentUser = computed(() => chatStore.currentUser);
+const currentUser = computed(() => chatStore.currentUser || null);
 </script>
 
 <template>
@@ -22,9 +21,9 @@ const currentUser = computed(() => chatStore.currentUser);
       </div>
     </div>
     <div v-else class="flex justify-start">
-      <div class="w-fit max-w-[300px]  dark:bg-[#2C2C2C] bg-[#D6D6D6] p-[10px] px-[20px] rounded-tr-lg rounded-tl-sm rounded-bl-md rounded-br-xl break-words">
-        <p class="font-semibold text-[#34D399]"><i>{{currentUser.name}}</i></p>
-        <p class="text-start mt-[5px] dark:text-white  break-words">
+      <div class="w-fit max-w-[300px] dark:bg-[#2C2C2C] bg-[#D6D6D6] p-[10px] px-[20px] rounded-tr-lg rounded-tl-sm rounded-bl-md rounded-br-xl break-words">
+        <p v-if="currentUser" class="font-semibold text-[#34D399]"><i>{{ currentUser.name }}</i></p>
+        <p class="text-start mt-[5px] dark:text-white break-words">
           <slot />
         </p>
       </div>

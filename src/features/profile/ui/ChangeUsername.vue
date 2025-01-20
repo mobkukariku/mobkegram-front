@@ -28,9 +28,7 @@ const handleSubmit = async () => {
 
   if (errors.value.length === 0){
     try{
-      await profileStore.changeUsername({
-        username: changeform.value.username,
-      });
+      await profileStore.changeUsername(changeform.value.username);
       toast.add({
         severity: "success",
         summary: "Success",
@@ -38,7 +36,7 @@ const handleSubmit = async () => {
         life: 3000
       });
       closeDialog();
-    }catch(err){
+    }catch(err:any){
       const message = err.response?.data?.message || "An error occurred.";
       errors.value.push(message);
     }

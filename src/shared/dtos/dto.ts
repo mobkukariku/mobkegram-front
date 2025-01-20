@@ -1,5 +1,5 @@
 export interface FriendUser {
-    id: number;
+    id: string;
     username: string;
     email: string;
     pictureURL: string | null;
@@ -33,4 +33,11 @@ export interface FriendRequest {
     pictureURL: string;
     username: string;
     email: string;
+}
+
+export interface Message {
+    id: string;
+    content: string;
+    senderID: string;
+    receiverID: string
 }

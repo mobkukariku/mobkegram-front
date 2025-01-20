@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref } from "vue";
   import {Button, InputText, Message, Password, useToast} from "primevue";
-  import {useAuthStore} from "../model/store.ts";
+  import {useAuthStore} from "../model/store";
 
   const auth = useAuthStore();
 

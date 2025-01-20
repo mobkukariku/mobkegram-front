@@ -6,7 +6,7 @@ import SendInput from "@/features/chat/ui/SendInput.vue";
 import ChatContainer from "@/features/chat/ui/ChatContainer.vue";
 
 const chatStore = useChatStore();
-const selectedUser = computed(() => chatStore.currentUser || {});
+const selectedUser = computed(() => chatStore.currentUser || null);
 const messages = computed(() => chatStore.messages);
 const chatEndRef = ref<HTMLElement | null>(null);
 

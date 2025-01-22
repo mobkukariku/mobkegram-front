@@ -5,7 +5,7 @@ import MessageUI from "@/features/chat/ui/MessageUI.vue";
 
 
 const chatStore = useChatStore();
-const friendId = computed(() => chatStore.currentUser?.id);
+const friendId = computed(() => chatStore.currentUser?._id);
 const messages = computed(() => chatStore.messages || []);
 
 onMounted(() => {
@@ -24,7 +24,7 @@ onUnmounted(() => {
   <div class="flex-grow overflow-auto p-4">
     <MessageUI
         v-for="message in messages"
-        :key="message.id"
+        :key="message._id"
         :senderID="message.senderID"
         class="mb-[20px]"
     >

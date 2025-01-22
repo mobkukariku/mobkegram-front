@@ -6,16 +6,6 @@ import MessageSideBarItem from "@/shared/components/sidebar/MessageSideBarItem.v
 import router from "@/app/providers/router";
 
 const chatStore = useChatStore();
-const sidebarMessages = computed(() => chatStore.sideBarMessages);
-
-onMounted(() => {
-  chatStore.getSideBarMessages();
-  chatStore.subscribeToSidebarMessages();
-});
-
-onUnmounted(() => {
-  chatStore.unSubscribeFromSidebarMessages();
-});
 
 const handlePage = () => {
   router.push("/chat");
@@ -34,17 +24,6 @@ const handlePage = () => {
     </div>
 
     <div class="mt-8 space-y-4 overflow-y-auto">
-      <MessageSideBarItem
-          v-for="sidebarMessage in sidebarMessages"
-          :key="sidebarMessage._id"
-          :id="sidebarMessage.id"
-          :pictureURL="sidebarMessage.pictureURL"
-          :name="sidebarMessage.name"
-          :senderName="sidebarMessage.senderName"
-          :content="sidebarMessage.content"
-          class="cursor-pointer hover:bg-[#3E3E42] p-3 rounded-md transition-colors"
-          @click.prevent="handlePage"
-      />
     </div>
   </div>
 </template>

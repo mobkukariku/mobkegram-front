@@ -7,9 +7,9 @@ export const socket = io(import.meta.env.VITE_BACKEND_SOCKET, {
 
 export const socketConnect = () => {
     const profileStore = useProfileStore();
-    const userId = profileStore.profile?.id || localStorage.getItem("profileId");
-
+    const userId =  profileStore.profile?._id || localStorage.getItem("profileId");
     if (!userId) {
+        console.log("no user");
         return;
     }
 

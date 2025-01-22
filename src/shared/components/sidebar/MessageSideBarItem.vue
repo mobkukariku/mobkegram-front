@@ -19,7 +19,7 @@ const chatStore = useChatStore();
 const handleButton = () => {
   console.log("1");
   chatStore.setUser({
-    id: props.id || "",
+    _id: props.id || "",
     name: props.name || "",
     email: props.email || "",
     pictureURL: props.pictureURL || "",

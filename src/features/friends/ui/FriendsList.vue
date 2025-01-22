@@ -18,9 +18,9 @@ onMounted(() => {
 
   <FriendCart
       v-else
-      :id="friend.id"
+      :_id="friend._id"
       v-for="(friend) in friends"
-      :key="friend.id"
+      :key="friend._id"
       :name="friend.name"
       :email="friend.email"
       :pictureURL="friend.pictureURL ?? undefined"

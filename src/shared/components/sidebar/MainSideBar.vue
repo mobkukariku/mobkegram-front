@@ -63,7 +63,7 @@ const showSettingsDialog = ref(false);
                     shape="circle"
                     @click="showProfileDialog = true"
                 />
-                <span class="font-bold">{{ profile.name }}</span>
+                <span class="font-bold" @click="showProfileDialog = true">{{ profile.name }}</span>
               </template>
               <template v-else>
                 <span class="text-red-500">Error loading profile</span>

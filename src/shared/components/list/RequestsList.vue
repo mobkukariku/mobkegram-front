@@ -30,7 +30,7 @@ const handleButton = async (username:string, accept:boolean) => {
       <p class="text-xl font-bold mt-[20px]">{{props.title}}</p>
       <div v-if="!props.loading ">
       <div class="flex flex-wrap gap-5 mt-[20px]"  v-if="props.List && props.List.length>0">
-        <div v-for="item in props.List" :key="item.id" class="flex flex-col justify-end items-center h-[300px] bg-[#EBEBEB] dark:bg-[#202024] p-[20px] rounded-lg mt-[20px] w-[250px]">
+        <div v-for="item in props.List" :key="item._id" class="flex flex-col justify-end items-center h-[300px] bg-[#EBEBEB] dark:bg-[#202024] p-[20px] rounded-lg mt-[20px] w-[250px]">
           <img :src="item.pictureURL ?? undefined" :alt="item.name" class="rounded-full w-[120px] object-cover bg-gray-600" />
           <div class="text-center mt-[20px] flex flex-col  gap-2">
             <p class="font-bold">{{item.username}}</p>

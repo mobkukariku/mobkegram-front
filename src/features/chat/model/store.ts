@@ -9,7 +9,7 @@ export const useChatStore = defineStore('chat', {
         users: [] as Array<{ id: string; name: string; email: string; pictureURL: string }>,
         sideBarMessages: [] as Array<SideBarMessage>,
         currentUser: null as null | {
-            id: string;
+            _id: string;
             name: string;
             email: string;
             pictureURL: string;
@@ -46,13 +46,14 @@ export const useChatStore = defineStore('chat', {
                 return;
             }
             try {
-                const data = await sendMessage(this.currentUser.id, message);
+                console.log(this.currentUser);
+                const data = await sendMessage(this.currentUser._id, message);
                 this.messages.push(data.message);
             } catch (err) {
                 console.error(err);
             }
         },
-        setUser(user: { id: string; name: string; email: string; pictureURL: string }) {
+        setUser(user: { _id: string; name: string; email: string; pictureURL: string }) {
             this.currentUser = user;
         },
         clearUser() {
@@ -63,8 +64,15 @@ export const useChatStore = defineStore('chat', {
                 console.error("Current user is not set.");
                 return;
             }
+
+            // Удаляем предыдущую подписку перед созданием новой
+            socket.off("newMessage");
+
             socket.on("newMessage", (newMessage) => {
-                if (newMessage.receiverID === this.currentUser?.id || newMessage.senderID === this.currentUser?.id) {
+                if (
+                    newMessage.receiverID === this.currentUser?._id ||
+                    newMessage.senderID === this.currentUser?._id
+                ) {
                     this.messages.push(newMessage);
                 }
             });
@@ -83,27 +91,6 @@ export const useChatStore = defineStore('chat', {
         },
         setSideBarMessages(sideBarMessages:SideBarMessage[]) {
             this.sideBarMessages = sideBarMessages;
-        },
-        subscribeToSidebarMessages() {
-            socket.on("sidebarMessage", (newMessage) => {
-                if (!newMessage || !newMessage._id) {
-                    console.error("Invalid message format from WebSocket");
-                    return;
-                }
-
-                const existingIndex = this.sideBarMessages.findIndex(
-                    (message) => message._id === newMessage._id
-                );
-
-                if (existingIndex !== -1) {
-                    this.sideBarMessages[existingIndex] = newMessage;
-                } else {
-                    this.sideBarMessages.unshift(newMessage);
-                }
-            });
-        },
-        unSubscribeFromSidebarMessages() {
-            socket.off("sidebarMessage");
         },
     },
 });

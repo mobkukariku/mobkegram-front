@@ -15,7 +15,8 @@ export const useProfileStore = defineStore('profile', {
             try {
                 const data = await getProfile();
                 this.setProfile(data);
-                localStorage.setItem("profileId", data.id);
+                console.log(data)
+                localStorage.setItem("profileId", data._id);
             } catch (err) {
                 this.errors = 'Ошибка при получении профиля';
                 console.error(err);

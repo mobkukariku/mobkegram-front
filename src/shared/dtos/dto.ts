@@ -1,5 +1,5 @@
 export interface FriendUser {
-    id: string;
+    _id: string;
     username: string;
     email: string;
     pictureURL: string | null;
@@ -7,7 +7,7 @@ export interface FriendUser {
 }
 
 export interface Profile {
-    id: string,
+    _id: string,
     username: string,
     name: string,
     email: string,
@@ -16,7 +16,6 @@ export interface Profile {
     friendRequests: string[],
     sentRequests: string[]
 }
-
 
 export interface SideBarMessage {
     _id: string;
@@ -29,14 +28,14 @@ export interface SideBarMessage {
 
 export interface FriendRequest {
     name: string;
-    id: string;
+    _id: string;
     pictureURL: string;
     username: string;
     email: string;
 }
 
 export interface Message {
-    id: string;
+    _id: string;
     content: string;
     senderID: string;
     receiverID: string

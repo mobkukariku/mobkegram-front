@@ -3,7 +3,7 @@ import { useChatStore } from "@/features/chat/model/store";
 import router from "@/app/providers/router";
 
 const props = defineProps({
-  id: {
+  _id: {
     type: String,
     default: null,
   },
@@ -27,7 +27,7 @@ const chatStore = useChatStore();
 
 const handleButton = () => {
   chatStore.setUser({
-    id: props.id,
+    _id: props._id,
     name: props.name,
     email: props.email,
     pictureURL: props.pictureURL,
